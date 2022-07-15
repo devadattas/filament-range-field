@@ -8,22 +8,22 @@ use Illuminate\Support\Arr;
 
 class RangeSlider extends Field
 {
-    protected int  | Closure | null $min = null;
-    protected int  | Closure | null $max = null;
-    protected int  | Closure | null $step = 1;
+    protected float | int | Closure | null $min = null;
+    protected float | int | Closure | null $max = null;
+    protected float | int | Closure | null $step = 1;
     protected bool | Closure $displaySteps = true;
     protected bool $stepsAssoc = false;
     protected array $steps = [];
 
-    protected string $view = 'filament-range-field::forms.components.range-slider';
+    protected string $view = 'forms.components.range-slider';
 
     /**
      * Sets the step value
      *
-     * @param int $step
+     * @param float $step
      * @return self
      */
-    public function step(int | Closure $step): self
+    public function step(float | int | Closure $step): self
     {
         $this->step = $step;
 
@@ -33,10 +33,10 @@ class RangeSlider extends Field
     /**
      * Sets the min value
      *
-     * @param int $min
+     * @param float $min
      * @return self
      */
-    public function min(int | Closure $min): self
+    public function min(float | int | Closure $min): self
     {
         $this->min = $min;
 
@@ -46,10 +46,10 @@ class RangeSlider extends Field
     /**
      * Sets the max value
      *
-     * @param int $max
+     * @param float $max
      * @return self
      */
-    public function max(int | Closure $max): self
+    public function max(float | int | Closure $max): self
     {
         $this->max = $max;
 
@@ -105,7 +105,7 @@ class RangeSlider extends Field
         return $this->steps ?? [];
     }
 
-    public function getStep(): int
+    public function getStep(): int | float
     {
         return $this->evaluate($this->step);
     }
